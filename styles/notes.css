@@ -1,0 +1,379 @@
+.navigation {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    .navigation__item {
+        transition: all .25s;
+        padding: 10px;
+
+        a {
+            text-decoration: none;
+            display: block;
+        }
+
+        &:nth-child(1) {
+            background-color: rgb(255, 69, 0);
+        }
+        &:nth-child(2) {
+            background-color: rgb(255, 102, 13);
+        }
+        &:nth-child(3) {
+            background-color: rgb(255, 135, 26);
+        }
+        &:nth-child(4) {
+            background-color: rgb(255, 170, 39);
+        }
+        &:nth-child(5) {
+            background-color: rgb(255, 204, 51);
+        }
+        &:nth-child(6) {
+            background-color: black;
+        }
+
+        .item__headline {
+            margin: 0 0 32px 150px;
+            /* text-align: center; */
+            cursor: pointer;
+            user-select: none;
+            text-shadow: 0 1px 0 #333, 0 2px 0 #333,
+                0 3px 0 #333, 0 4px 0 #333,
+                0 5px 0 #333, 0 6px 0 #333;
+
+            &::first-letter {
+                text-decoration: underline;
+                text-shadow: none;
+                font-size: 32px;
+                color: #333;
+            }
+        }
+
+        /*First navigation item with go back link*/
+        &:first-child {
+            .item__headline {
+                margin: 0px;
+
+                &::first-letter {
+                    text-decoration: none;
+                    text-shadow: unset;
+                    font-size: unset;
+                    color: unset;
+                }
+            }
+        }
+
+        label {
+            color: #333;
+            font-weight: bold;
+            margin: 0 0 0 10px;
+        }
+
+        .item__input-label {
+            margin: 0 0 24px;
+            text-shadow: 0 1px 0 #333, 0 2px 0 #333,
+                0 3px 0 #333;
+        }
+
+        .item__input-group {
+            margin: 0 0 10px;
+        }
+
+        .item__post-box {
+            text-align: center;
+            margin: 0 0 25px;
+
+            input[type="text"],
+            select {
+                background-color: white;
+                border: none;
+                border-bottom: 5px solid #333;
+                padding: 5px;
+                color: #333;
+                border-radius: none;
+            }
+
+            input[type="button"] {
+                padding: 10px;
+                border: none;
+                border-radius: 500px;
+                background-color: #333;
+                color: white;
+                font-weight: bold;;
+            }
+        }
+
+        &.navigation__item--closed {
+            > * {
+                display: none;
+            }
+
+            .item__headline {
+                display: block;
+                /* margin: 0 0 0px 150px; */
+                margin-bottom: 0px;
+            }
+        }
+
+        &.navigation__item--toggle {
+            text-align: right;
+        }
+
+        .navigation__toggle-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0;
+            font-size: 24px;
+        }
+    }
+
+    &.navigation--closed {
+        .navigation__item {
+            display: none;
+        }
+
+        .navigation__item--toggle {
+            display: list-item;
+        }
+    }
+}
+
+.note-title {
+    font-size: 32px;
+    text-align: center;
+}
+
+.note-group {
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0,0,0,.5);
+
+    th,
+    td {
+        padding: 10px;
+
+        &.message-positive {
+            color: grey;
+            text-decoration: line-through;
+        }
+
+        &.done-positive {
+            color: green;
+        }
+
+        &.done-negative {
+            color: red;
+        }
+    }
+
+    thead {
+        background-color: orange;
+
+        th {
+            border-right: 1px solid white;
+
+            &:last-child{
+                border-right: none;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            color: black;
+            border-bottom: 1px solid orange;
+
+            &:nth-child(even) {
+                background-color: goldenrod;
+            }
+
+            &:nth-child(odd) {
+                background-color: gold;
+            }
+        }
+
+        td {
+            &:first-child {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.nok-message {
+    padding: 20px;
+    background-color: white;
+    width: 75%;
+    border-bottom: 5px solid red;
+    color: red;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    a {
+        color: red;
+        font-weight: bold;
+    }
+
+
+    /* .nok-message__title {
+
+    }
+
+    .nok-message-description {
+
+    } */
+}
+
+.blocking-layer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100svw;
+    height: 100svh;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.blocking-layer--closed {
+        display: none;
+    }
+
+    .error-message {
+        background-color: white;
+        border-radius: 10px;
+        width: 80%;
+        
+        .error-message__title {
+            position: relative;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            margin: 0 0 24px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .error-message__close-button {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            color: white;
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .error-message__content {
+            color: #333;
+            padding: 0 24px;
+        }
+    }
+}
+
+@media (min-width: 421px) {
+    .navigation {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: orangered;
+        
+        &.navigation--closed {
+            .navigation__item {
+                display: block;
+            }
+    
+            .navigation__item--toggle {
+                display: none;
+            }
+        }
+
+        .navigation__item {
+            padding: 20px;
+            position: relative;
+
+            &:nth-child(even) {
+                background-color: orangered;
+            }
+
+            &:nth-child(odd) {
+                background-color: orangered;
+            }
+            
+            .item__headline {
+                margin: 0;
+
+                /* &::first-letter {
+                    text-decoration: none;
+                    text-shadow: unset;
+                    font-size: unset;
+                    color: unset;
+                } */
+            }
+
+            .item__post-box {
+                position: absolute;
+                top: 100px;
+                left: 0px;
+                background-color: white;
+                padding: 20px;
+                width: max-content;
+                text-align: unset;
+                border: 1px solid orangered;
+                border-bottom: 5px solid orangered;
+
+                input[type="text"],
+                select {
+                    border: 1px solid orangered;
+                    border-bottom: 5px solid orangered;
+                    color: #333;
+                }
+
+                &:nth-child(3) {
+                    top: 300px;
+                }
+
+                .item__input-label {
+                    text-shadow: unset;
+                    color: orangered;
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
+    .navigation__item--toggle {
+        display: none;
+    }
+
+    .note-title {
+        margin: 50px auto;
+        font-size: 64px;
+    }
+
+    .note-group {
+        font-size: 2em;
+
+        th,
+        td {
+            min-width: 5vw;
+
+            &:nth-child(2) {
+                min-width: 20vw;
+            }
+        }
+    }
+
+    .nok-message {
+        width: 25%;
+    }
+
+    .blocking-layer {
+        .error-message {
+            width: 25%;
+        }
+    }
+}
